@@ -15,5 +15,5 @@ These plugins assume MongoDB is available with a database named 'ircbot'.
 * .reload or restart sopel
 
 #### Commands ####
-.quote - add or find a quote
-.zing - ZING!
+* .quote - add or find a quote
+* .zing - ZING!
