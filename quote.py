@@ -18,7 +18,7 @@ def parse_search_params(params):
         return (None, None)
 
 def parse_quotable_params(params):
-    param_re = '(?P<realname>\w+)?\s?(?P<quote><\w+>.*)'
+    param_re = '(?P<realname>\w+)?\s?(?P<quote><.*)'
     params = re.match(param_re, params)
 
     quoted = [params.group('realname')] if params.group('realname') else []
@@ -27,14 +27,14 @@ def parse_quotable_params(params):
     nicks = re.findall(nick_pattern, quote)
     if  nicks:
         nicks = [re.subn(r'[@<>+]', '', n)[0] for n in nicks]
-        quoted = [nick for nick in set(quoted + nicks)]
+        quoted = [nick.lower() for nick in set(quoted + nicks)]
 
     return (quoted, quote)
 
 def get_random_quote(quotes, nick, search):
     query = {}
     if nick:
-        query['nick'] = nick
+        query['nick'] = nick.lower()
     if search:
         query['quote'] = re.compile(search, re.IGNORECASE)
     
