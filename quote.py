@@ -3,6 +3,8 @@ import re
 
 from sopel.module import commands, example
 
+nick_pattern = '(<[^\s]+>)' #Pattern for <@+nickNames>
+
 def parse_search_params(params):
     param_re = '(?P<nick>\w+)?\s?(?P<search>\/.*\/)?$'
     params = re.match(param_re, params)
@@ -22,7 +24,7 @@ def parse_quotable_params(params):
     quoted = [params.group('realname')] if params.group('realname') else []
     quote = params.group('quote')
 
-    nicks = re.findall('<[^\s]+>', quote)
+    nicks = re.findall(nick_pattern, quote)
     if  nicks:
         nicks = [re.subn(r'[@<>+]', '', n)[0] for n in nicks]
         quoted = [nick for nick in set(quoted + nicks)]
@@ -62,7 +64,7 @@ def quote(bot, trigger):
     input = trigger.group(2) if trigger.group(2) else ''
 
     #if the input contains <Something>, assume it's an input quote 
-    quotable = re.findall('<\w+>', input)
+    quotable = re.findall(nick_pattern, input)
 
     if quotable:
         who, quote = parse_quotable_params(input)
