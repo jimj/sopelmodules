@@ -72,4 +72,4 @@ def quote(bot, trigger):
         bot.reply('quote stored.')
     else:
         nick, search = parse_search_params(input)
-        bot.reply(get_random_quote(quotes, nick, search))
+        bot.say(get_random_quote(quotes, nick, search))
