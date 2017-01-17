@@ -18,7 +18,7 @@ def parse_search_params(params):
         return (None, None)
 
 def parse_quotable_params(params):
-    param_re = '(?P<realname>\w+)?\s?(?P<quote><.*)'
+    param_re = '(?P<realname>\w+)?\s?[\d:]{0,5}\s?(?P<quote><.*)'
     params = re.match(param_re, params)
 
     quoted = [params.group('realname')] if params.group('realname') else []
