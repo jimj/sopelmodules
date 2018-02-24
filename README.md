@@ -6,6 +6,7 @@ Customization of Sopel.  Includes MongoDB support.
 * MongoDB 3.x
 * PyMongo 3.x
 * Sopel
+* BeautifulSoup 4
 
 #### Installation ####
 These plugins assume MongoDB is available with a database named 'ircbot'.
