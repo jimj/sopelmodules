@@ -3,6 +3,8 @@ Sopel plugins
 Customization of Sopel.  Includes MongoDB support.
 
 #### Requirements ####
+* Python 2.x
+* Mock 2.x
 * MongoDB 3.x
 * PyMongo 3.x
 * Sopel
