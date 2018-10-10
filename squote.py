@@ -5,6 +5,10 @@ from sopel.module import commands
 _URL = 'https://www.bloomberg.com/quote/%s:US'
 
 @commands('squote')
+def github_issue_1(bot, trigger):
+    bot.say("1 MILLION DOLLARS")
+    bot.say("https://github.com/jimj/sopelmodules/issues/1")
+
 def lookup(bot, trigger):
     ticker_symbol = trigger.group(2).upper()
     url = _URL % ticker_symbol
