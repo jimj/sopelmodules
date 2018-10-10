@@ -2,13 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 from sopel.module import commands
 
-_URL = 'https://www.bloomberg.com/quote/%s:US'
+_URL = 'https://www.marketwatch.com/investing/stock/%s'
 
 @commands('squote')
-def github_issue_1(bot, trigger):
-    bot.say("1 MILLION DOLLARS")
-    bot.say("https://github.com/jimj/sopelmodules/issues/1")
-
 def lookup(bot, trigger):
     ticker_symbol = trigger.group(2).upper()
     url = _URL % ticker_symbol
@@ -18,7 +14,7 @@ def lookup(bot, trigger):
         bot.say("Got HTTP %s trying to look up %s" % (response.status_code, ticker_symbol))
     else:
         soup = BeautifulSoup(response.text)
-        info = lambda keyword: soup.find('meta', itemprop=keyword)['content']
+        info = lambda keyword: soup.find('meta', {'name': keyword})['content']
 
         name = info('name')
         price = info('price')
